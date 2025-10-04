@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>NickSite - Game Hub</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(120deg, #1a0033, #300060, #110022);
+      background-size: 400% 400%;
+      animation: gradientFlow 10s ease infinite;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Animated glows */
+    .glow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 20%, rgba(170, 0, 255, 0.25), transparent 60%),
+                  radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.2), transparent 70%),
+                  radial-gradient(circle at 60% 30%, rgba(255, 0, 200, 0.15), transparent 60%);
+      animation: glowMove 12s ease-in-out infinite alternate;
+      filter: blur(80px);
+      z-index: 0;
+    }
+
+    @keyframes glowMove {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-10%, 5%) scale(1.1); }
+      100% { transform: translate(10%, -5%) scale(1); }
+    }
+
+    /* Floating lights */
+    .light {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: floatLight 8s linear infinite;
+    }
+
+    @keyframes floatLight {
+      from { transform: translateY(110vh) scale(1); opacity: 0.6; }
+      to { transform: translateY(-10vh) scale(0.5); opacity: 0; }
+    }
+
+    /* Header */
+    h1 {
+      margin-top: 2rem;
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px #00f0ff, 0 0 25px #00f0ff;
+      animation: glowTitle 2s infinite alternate;
+      z-index: 2;
+    }
+
+    @keyframes glowTitle {
+      from { text-shadow: 0 0 10px #00f0ff, 0 0 25px #00f0ff; }
+      to { text-shadow: 0 0 25px #a64eff, 0 0 50px #a64eff; }
+    }
+
+    /* Navbar */
+    nav {
+      background: rgba(0, 0, 0, 0.6);
+      margin-top: 1.5rem;
+      border-radius: 15px;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      z-index: 2;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 0.7rem 1.5rem;
+      border: 2px solid #00f0ff;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px transparent;
+    }
+
+    nav ul li a:hover {
+      background: #00f0ff;
+      color: #000;
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #00f0ff;
+    }
+
+    /* Main Section */
+    main {
+      margin-top: 3rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 2rem 3rem;
+      border-radius: 20px;
+      max-width: 800px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      z-index: 2;
+    }
+
+    main h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #fff;
+    }
+
+    main p {
+      font-size: 1.1rem;
+      color: #d3d3d3;
+      line-height: 1.6;
+    }
+
+    a.game-link {
+      display: inline-block;
+      margin-top: 2rem;
+      background: #00f0ff;
+      color: #000;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: 0.3s ease;
+      box-shadow: 0 0 15px #00f0ff;
+      text-decoration: none;
+    }
+
+    a.game-link:hover {
+      transform: scale(1.1);
+      background: #00ffae;
+      box-shadow: 0 0 25px #00ffae;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      main {
+        padding: 1.5rem;
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+
+  <h1>NickSite</h1>
+
+  <nav>
+    <ul>
+      <li><a href="TicTacToe/index.html">🎮 Tic Tac Toe</a></li>
+      <li><a href="Snake_game/index.html">🐍 Snake Game</a></li>
+      <li><a href="RPG/index.html">🔫 RPG Gunfight (In progress)</a></li>
+      <li><a href="Power/index.html">⚡ Powered By</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h3>Welcome to NickSite!</h3>
+    <p>Choose any game below and have fun. Each one has been crafted with passion and style — powered by Nick 🔥</p>
+    <a href="TicTacToe/index.html" class="game-link">Play Now</a>
+  </main>
+
+  <script>
+    // Floating lights generator
+    for (let i = 0; i < 25; i++) {
+      const light = document.createElement('div');
+      light.classList.add('light');
+      light.style.left = Math.random() * 100 + 'vw';
+      light.style.animationDelay = Math.random() * 8 + 's';
+      light.style.animationDuration = 6 + Math.random() * 4 + 's';
+      light.style.background = `hsl(${250 + Math.random() * 50}, 100%, 75%)`;
+      document.body.appendChild(light);
+    }
+  </script>
+</body>
+</html>

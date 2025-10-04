@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Powered By Nick</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(-45deg, #1a0033, #300060, #110022, #400080);
+        background-size: 400% 400%;
+        animation: gradientFlow 15s ease infinite;
+        position: relative;
+        color: #fff;
+        text-align: center;
+        padding: 0 2rem;
+    }
+
+    @keyframes gradientFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .glowLayer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 20% 20%, rgba(170,0,255,0.3), transparent 60%),
+                    radial-gradient(circle at 80% 80%, rgba(0,255,255,0.25), transparent 70%),
+                    radial-gradient(circle at 60% 30%, rgba(255,0,200,0.2), transparent 60%);
+        filter: blur(120px);
+        animation: glowMove 12s ease-in-out infinite alternate;
+        z-index: 0;
+    }
+
+    @keyframes glowMove {
+        0% { transform: translate(0,0) scale(1); }
+        50% { transform: translate(-20%,10%) scale(1.2); }
+        100% { transform: translate(20%,-10%) scale(1); }
+    }
+
+    h1 {
+        position: relative;
+        z-index: 1;
+        font-size: 3em;
+        color: #00fff2;
+        text-shadow: 0 0 20px #00fff2, 0 0 40px #ff00ff, 0 0 60px #a64eff;
+        animation: pulseGlow 2s infinite alternate;
+        margin-bottom: 1.5rem;
+    }
+
+    @keyframes pulseGlow {
+        0% { text-shadow: 0 0 20px #00fff2, 0 0 40px #ff00ff, 0 0 60px #a64eff; }
+        50% { text-shadow: 0 0 40px #ff00ff, 0 0 60px #00fff2, 0 0 80px #a64eff; }
+        100% { text-shadow: 0 0 30px #a64eff, 0 0 50px #00fff2, 0 0 70px #ff00ff; }
+    }
+
+    .line {
+        position: relative;
+        z-index: 1;
+        font-size: 1.3em;
+        margin: 0.5rem 0;
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+        animation: textPop 1s forwards;
+    }
+
+    .line:nth-child(2) { animation-delay: 1.5s; }
+    .line:nth-child(3) { animation-delay: 3s; }
+    .line:nth-child(4) { animation-delay: 4.5s; }
+
+    @keyframes textPop {
+        0% { opacity: 0; transform: translateY(50px) scale(0.8); text-shadow: 0 0 0px #fff; }
+        50% { opacity: 1; transform: translateY(-10px) scale(1.05); text-shadow: 0 0 15px #ff00ff, 0 0 30px #00fff2; }
+        100% { opacity: 1; transform: translateY(0) scale(1); text-shadow: 0 0 25px #ff00ff, 0 0 50px #00fff2; }
+    }
+
+    .button {
+        display: none;
+        margin-top: 2rem;
+        background: #00fff2;
+        color: #000;
+        border: none;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 0 20px #00fff2, 0 0 40px #00fff2;
+        transition: all 0.3s ease;
+        z-index: 1;
+        animation: buttonPop 0.8s ease forwards;
+    }
+
+    .button:hover {
+        background: #00ffae;
+        transform: scale(1.15);
+        box-shadow: 0 0 30px #00ffae, 0 0 50px #00ffae;
+    }
+
+    @keyframes buttonPop {
+        0% { opacity: 0; transform: scale(0.5) translateY(20px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .particle {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: float 8s linear infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100vh) scale(1); opacity: 0.7; }
+        100% { transform: translateY(-10vh) scale(0.5); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div class="glowLayer"></div>
+
+<h1>Powered by Nick!</h1>
+
+<p class="line">Welcome :D</p>
+<p class="line">This Website is coded using HTML, CSS, and JavaScript.</p>
+<p class="line">Designed & coded by Nick, this website has Snake game, Tic Tac Toe, Ludo!</p>
+
+<button class="button" id="playBtn">Wanna play games?</button>
+
+<script>
+    // Floating particles
+    for (let i = 0; i < 50; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.animationDelay = Math.random() * 5 + 's';
+        p.style.animationDuration = 5 + Math.random() * 5 + 's';
+        p.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        document.body.appendChild(p);
+    }
+
+    // Show button after last text animation
+    setTimeout(() => {
+        const btn = document.getElementById('playBtn');
+        btn.style.display = 'inline-block';
+    }, 6000);
+
+    // Button click redirects to Web.html
+    document.getElementById('playBtn').addEventListener('click', () => {
+        window.location.href = "../Web.html";
+    });
+</script>
+</body>
+</html>
